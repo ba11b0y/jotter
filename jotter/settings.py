@@ -51,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'jotter_API.urls'
+ROOT_URLCONF = 'jotter.urls'
 
 TEMPLATES = [
     {
