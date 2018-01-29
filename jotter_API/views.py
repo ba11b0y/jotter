@@ -38,6 +38,13 @@ class NoteView(APIView):
             return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
         return JsonResponse(serializer.errors, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+    def get(self, request, pk, format=None):
+
+        user = get_object_or_404(User, pk=pk)
+        notes = Note.objects.filter(owner=user)
+        serializer = NoteSerializer(notes, many=True)
+        return JsonResponse(serializer.data, status=status.HTTP_200_OK)
+
 
 class ImageView(APIView):
     permission_classes = (IsAuthenticated,)
