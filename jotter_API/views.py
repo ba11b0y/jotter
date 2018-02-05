@@ -58,3 +58,7 @@ class ImageView(APIView):
             serializer.save(owner=user)
             return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
         return HttpResponse(serializer.errors)
+
+    def get(self, request, pk, format=None):
+        images = Image.objects.filter(owner=pk)
+        return JsonResponse({"images": images})
