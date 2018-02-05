@@ -61,4 +61,5 @@ class ImageView(APIView):
 
     def get(self, request, pk, format=None):
         images = Image.objects.filter(owner=pk)
-        return JsonResponse({"images": images})
+        serializer = ImageSerializer(images, many=True)
+        return JsonResponse({"images": serializer.data})
