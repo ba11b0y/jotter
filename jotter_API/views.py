@@ -43,7 +43,7 @@ class NoteView(APIView):
         user = get_object_or_404(User, pk=pk)
         notes = Note.objects.filter(owner=user)
         serializer = NoteSerializer(notes, many=True)
-        return JsonResponse(serializer.data, status=status.HTTP_200_OK)
+        return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
 
 
 class ImageView(APIView):
